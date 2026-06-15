@@ -18,23 +18,23 @@ public class App {
      */
     public static void main(String[] args) {
         // Setup
-        Scanner input = new Scanner(System.in);
-        Converter converter = new Converter();
+        try (Scanner input = new Scanner(System.in)) {
+            Converter converter = new Converter();
 
-        // Greet and Get
-        System.out.println("Welcome to A Terribly Weighty Subject!");
-        System.out.print("Enter a whole number of ounces: ");
-        int ounces = input.nextInt();
+            // Greet and Get
+            System.out.println("Welcome to A Terribly Weighty Subject!");
+            System.out.print("Enter a whole number of ounces: ");
+            int ounces = input.nextInt();
         
-        // Output.
-
-        String ounceLabel = ounces == 1 ? "ounce" : "ounces";
-
-        System.out.println("You entered " + ounces + " " + ounceLabel + ".");
-        System.out.println(ounces + " " + ounceLabel + " is " + converter.toPoundsAndOunces(ounces) + ".");
-        System.out.printf("%d %s is %.4f pounds.%n", ounces, ounceLabel, converter.toPounds(ounces));
-        System.out.println("Goodbye!");
-        
-        input.close();
+            // Output.
+            String ounceLabel = ounces == 1 ? "ounce" : "ounces";
+            System.out.println();
+            System.out.println("You entered " + ounces + " " + ounceLabel + ".");
+            System.out.println("Pounds and ounces: " + converter.toPoundsAndOunces(ounces)); 
+            System.out.println("Decimal pounds: " + converter.toPounds(ounces)); 
+            System.out.println(); 
+            System.out.println("Goodbye!");
+        }                
+            
     }
 }

@@ -1,5 +1,7 @@
 package edu.csc214.weighty;
 
+import java.util.Locale;
+
 /**
  * Converts ounce values into pound-based representations.
  *
@@ -16,31 +18,19 @@ public class Converter {
     // Also, since it is a constant, static makes sense since it will remain the same across all instances of Converter.
     private static final int OUNCES_PER_POUND = 16;
 
-    /**
-     * Converts ounces into decimal pounds.
-     *
-     * @param ounces the whole-number ounce value to convert
-     * @return the equivalent value in decimal pounds
-     */
-    public double toPounds(int ounces) {
-        return ounces / (double) OUNCES_PER_POUND;
-    }
+   public String toPounds(int ounces) { 
+    double pounds = ounces / (double) OUNCES_PER_POUND; 
+    String poundUnit = pounds == 1.0 ? "lb" : "lbs";
+    return String.format(Locale.US, "%.4f %s", pounds, poundUnit); 
+   }
 
-    /**
-     * Converts ounces into a formatted pounds-and-ounces string.
-     *
-     * @param ounces the whole-number ounce value to convert
-     * @return the value formatted as pounds and remaining ounces
-     */
+
     public String toPoundsAndOunces(int ounces) {
         int pounds = ounces / OUNCES_PER_POUND;
         int remainingOunces = ounces % OUNCES_PER_POUND;
 
-        // return pounds + " lb " + remainingOunces + " oz";
-
-        // updated to handle lb vs lbs and oz 
         String poundUnit = (pounds == 1) ? "lb" : "lbs";
-        String ounceUnit = "oz"; // "oz" is the same for singular and plural, so we can just use "oz"
+        String ounceUnit = "oz"; 
         return pounds + " " + poundUnit + " " + remainingOunces + " " + ounceUnit;
 
     }
